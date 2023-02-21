@@ -19,30 +19,31 @@ public class JsoupPrice {
 
         Element element = page.get(size - 1);
 
-        String pageNumber = element.text();
+        String pageNumber = "1";
 
         for (int i = 1; i <= Integer.parseInt(pageNumber); i++) {
 
-            Document document = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/page/1/" + i).get();
+            Document document = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/page/" + i).get();
 
-            Elements div = document.getElementsByClass("archive");
-            for (Element element2 : div) {
-                Elements minprice = element2.getElementsByClass("min-price");
-                Elements model = element2.getElementsByClass("name");
-                Elements specifications = element2.getElementsByClass("specifications");
+            Elements products = document.getElementsByClass("product");
+            for (Element product : products) {
+                Elements minprice = product.getElementsByClass("min-price");
+                Elements model = product.getElementsByClass("name");
+                Elements specifications = product.getElementsByClass("specifications");
 
 
-                try {
+                System.out.println(minprice.text() + "   " + model.text() + "    " + specifications.text());
 
-                    System.out.println(minprice.text() + "++++" + model.text() + "++++" + specifications.text());
+                Elements pages = document.getElementsByAttribute("products");
+                String attr = pages.attr();
+                System.out.println(attr);
 
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println(minprice.text() + "++++" + model.text() + "++++" + specifications.text());
-                }
+                Document document2 = Jsoup.connect("https://qiymeti.net/telefon/" + attr).get();
+                Elements elements =document2.getElementsByClass();
+                String text = elements.get(0).getElementsByTag().text();
+                System.out.println(text);
 
             }
-
-
         }
     }
 }
