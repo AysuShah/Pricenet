@@ -19,10 +19,16 @@ public class ItemEntity {
     @Column(name = "id")
     private int id;
 
-    private Integer price;
+    @Column(name = "price")
+    private int price;
 
+    @Column(name = "minprice")
+    private int minprice;
+
+    @Column(name = "model")
     private String model;
 
+    @Column(name = "specifications")
     private String specifications;
 }
 
