@@ -32,16 +32,13 @@ public class JsoupPrice {
                 Elements specifications = product.getElementsByClass("specifications");
 
 
-                System.out.println(minprice.text() + "   " + model.text() + "    " + specifications.text());
-
-                Elements pages = document.getElementsByAttribute("products");
-                String attr = pages.attr();
-                System.out.println(attr);
+                Elements href = product.getElementsByClass("thumbnail");
+                href = href.get(0).getElementsByTag("a");
+                String attr = href.attr("href");
 
                 Document document2 = Jsoup.connect("https://qiymeti.net/telefon/" + attr).get();
-                Elements elements =document2.getElementsByClass();
-                String text = elements.get(0).getElementsByTag().text();
-                System.out.println(text);
+                Elements elements = document2.getElementsByClass("spec-values");
+                System.out.println(elements.get(0).text());
 
             }
         }
