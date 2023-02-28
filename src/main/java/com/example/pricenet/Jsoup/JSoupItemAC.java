@@ -25,30 +25,6 @@ public class  JSoupItemAC {
 
             Document document = Jsoup.connect("https://qiymeti.net/qiymetleri/kondisioner/page/" + i).get();
 
-            Elements products = document.getElementsByClass("product");
-            for (Element product : products) {
-                Elements minprice = product.getElementsByClass("min-price");
-                Elements model = product.getElementsByClass("name");
-                Elements specifications = product.getElementsByClass("specifications");
-
-
-                Elements href = product.getElementsByClass("thumbnail");
-                href = href.get(0).getElementsByTag("a");
-                String attr = href.attr("href");
-
-                Document document2 = Jsoup.connect("https://qiymeti.net/kondisioner/" + attr).get();
-                Elements elements = document2.getElementsByClass("spec-values");
-                System.out.println(elements.get(0).text());
-
-                Elements priceElements = document2.getElementsByClass("price-row");
-                for (Element e : priceElements
-                ) {
-                    String attr1 = e.attr("data-price");
-                    System.out.println(attr1);
-
-
-                }
-            }
         }
     }
 }
