@@ -23,6 +23,11 @@ public class ItemService {
 
         return itemRepository.save(itemEntity);
     }
+
+
+    public ItemEntity saveItemJsoupData() {
+        return null;
+    }
 }
 
 

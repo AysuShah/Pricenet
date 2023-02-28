@@ -40,10 +40,14 @@ public class JsoupPrice {
                 Elements elements = document2.getElementsByClass("spec-values");
                 System.out.println(elements.get(0).text());
 
-                Elements price = product.getElementsByClass("value");
-                System.out.println(price.text());
+                Elements priceElements = document2.getElementsByClass("price-row");
+                for (Element e : priceElements
+                ) {
+                    String attr1 = e.attr("data-price");
+                    System.out.println(attr1);
 
 
+                }
             }
         }
     }

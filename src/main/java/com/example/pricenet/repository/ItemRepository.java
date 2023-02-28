@@ -1,12 +1,13 @@
 package com.example.pricenet.repository;
 
 import com.example.pricenet.entity.ItemEntity;
+import org.springframework.stereotype.Repository;
 
 public class ItemRepository {
 
 
-    public ItemEntity save(ItemEntity itemEntity) {
+   @Repository
+    public  interface
 
-        return itemEntity;
     }
-}
+
