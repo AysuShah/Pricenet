@@ -3,7 +3,9 @@ package com.example.pricenet.service;
 import com.example.pricenet.dto.ItemDto;
 import com.example.pricenet.entity.ItemEntity;
 import com.example.pricenet.repository.ItemRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ItemService {
 
     private final ItemRepository itemRepository;
