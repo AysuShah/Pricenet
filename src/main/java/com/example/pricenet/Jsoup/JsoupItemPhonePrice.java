@@ -7,7 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class JsoupPrice {
+public class JsoupItemPhonePrice {
     public static void main(String[] args) throws IOException {
 
 
@@ -35,6 +35,7 @@ public class JsoupPrice {
                 Elements href = product.getElementsByClass("thumbnail");
                 href = href.get(0).getElementsByTag("a");
                 String attr = href.attr("href");
+
 
                 Document document2 = Jsoup.connect("https://qiymeti.net/telefon/" + attr).get();
                 Elements elements = document2.getElementsByClass("spec-values");

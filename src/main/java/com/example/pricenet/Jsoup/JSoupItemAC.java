@@ -30,16 +30,18 @@ public class  JSoupItemAC {
                 Elements minPrice1 = product.getElementsByClass("min-price");
                 Elements model = product.getElementsByClass("name");
                 Elements specifications = product.getElementsByClass("specifications");
-                System.out.println(product);
 
-//                Elements href = product.getElementsByClass("thumbnail");
-//                href = href.get(0).getElementsByTag("a");
-//                String attr = href.attr("href");
+
+                Elements href = product.getElementsByClass("thumbnail");
+                href = href.get(0).getElementsByTag("a");
+                String attr = href.attr("href");
+
+
+                Document document2 = Jsoup.connect("https://qiymeti.net/kondisioner/" + attr).get();
+                Elements elements = document2.getElementsByClass("product-name");
+                System.out.println(elements.get(0).text());
+
 //
-//                Document document2 = Jsoup.connect("https://qiymeti.net/kondisioner/" + attr).get();
-//                Elements elements = document2.getElementsByClass("spec-values");
-//                System.out.println(elements.get(0).text());
-
 //                Elements priceElements = document2.getElementsByClass("price-row");
 //                for (Element e : priceElements
 //                ) {

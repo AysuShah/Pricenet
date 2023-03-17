@@ -7,7 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class JsoupPlanset {
+public class JsoupItemPlanset {
     public static void main(String[] args) throws IOException {
 
 
@@ -27,25 +27,26 @@ public class JsoupPlanset {
 
             Elements products = document.getElementsByClass("product");
             for (Element product : products) {
-                Elements minprice = product.getElementsByClass("min-price");
+                Elements minprice5 = product.getElementsByClass("min-price");
                 Elements model = product.getElementsByClass("name");
                 Elements specifications = product.getElementsByClass("specifications");
 
-                System.out.println(product);
 
                 Elements href = product.getElementsByClass("thumbnail");
                 href = href.get(0).getElementsByTag("a");
                 String attr = href.attr("href");
 
+
                 Document document2 = Jsoup.connect("https://qiymeti.net/planset/" + attr).get();
                 Elements elements = document2.getElementsByClass("spec-values");
                 System.out.println(elements.get(0).text());
 
+//
                 Elements priceElements = document2.getElementsByClass("price-row");
                 for (Element e : priceElements
                 ) {
-                    String attr2 = e.attr("data-price");
-                    System.out.println(attr2);
+                    String attr1 = e.attr("data-price");
+                    System.out.println(attr1);
 
                 }
             }
