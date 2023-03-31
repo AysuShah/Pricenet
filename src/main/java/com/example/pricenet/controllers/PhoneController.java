@@ -1,8 +1,9 @@
 package com.example.pricenet.controllers;
 
 
+import com.example.pricenet.Jsoup.JsoupItemPhonePriceService;
 import com.example.pricenet.dto.ItemDto;
-import com.example.pricenet.entity.ItemEntity;
+import com.example.pricenet.entity.PhoneEntity;
 import com.example.pricenet.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,17 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/pricenetdata")
+@RequestMapping("/phone")
 @RequiredArgsConstructor
-public class ItemController {
+public class PhoneController {
 
-    private final ItemService itemService;
+    private final JsoupItemPhonePriceService service;
 
 
-    @PostMapping("/addnewdata")
-    public ItemEntity addNewData(ItemDto itemDto) throws IOException {
-       return itemService.saveItemJsoupData();
-
+    @PostMapping("/save")
+    public void addNewData() throws IOException {
+     service.savePhoneToOb();
     }
 }
 

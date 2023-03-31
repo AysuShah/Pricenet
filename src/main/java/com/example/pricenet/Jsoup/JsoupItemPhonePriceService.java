@@ -1,15 +1,24 @@
 package com.example.pricenet.Jsoup;
 
+import com.example.pricenet.entity.PhoneEntity;
+import com.example.pricenet.repository.PhoneRepository;
+import lombok.AllArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Properties;
 
-public class JsoupItemPhonePrice {
-    public static void main(String[] args) throws IOException {
+@Component
+@AllArgsConstructor
+public class JsoupItemPhonePriceService {
 
+    private final PhoneRepository phoneRepository;
+
+        public void savePhoneToOb() throws IOException {
 
         Document pageCount = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/").get();
 
@@ -26,10 +35,15 @@ public class JsoupItemPhonePrice {
             Document document = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/page/" + i).get();
 
             Elements products = document.getElementsByClass("product");
+
+
             for (Element product : products) {
+
+                PhoneEntity phoneEntity = new PhoneEntity();
+
                 Elements minprice = product.getElementsByClass("min-price");
                 Elements model = product.getElementsByClass("name");
-                Elements specifications = product.getElementsByClass("specifications");
+//                Elements specifications = product.getElementsByClass("specifications");
 
 
                 Elements href = product.getElementsByClass("thumbnail");
@@ -47,10 +61,14 @@ public class JsoupItemPhonePrice {
                     String attr1 = e.attr("data-price");
                     System.out.println(attr1);
 
-
                 }
+
+                phoneEntity.setModel(model.text());
+
+                phoneRepository.save(phoneEntity);
             }
         }
     }
+
 }
 

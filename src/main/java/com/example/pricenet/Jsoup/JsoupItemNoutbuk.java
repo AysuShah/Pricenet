@@ -41,15 +41,15 @@ public class JsoupItemNoutbuk {
                 Elements elements = document2.getElementsByClass("product-name");
                 System.out.println(elements.get(0).text());
 
-//
-//                Elements priceElements = document2.getElementsByClass("price-row");
-//                for (Element e : priceElements
-//                ) {
-//                    String attr1 = e.attr("data-price");
-//                    System.out.println(attr1);
+
+                Elements priceElements = document2.getElementsByClass("price-row");
+                for (Element e : priceElements
+                ) {
+                    String attr1 = e.attr("data-price");
+                    System.out.println(attr1);
 
 
-//                }
+                }
             }
         }
     }

@@ -39,17 +39,23 @@ public class JsoupItemCamera {
 
                 Document document2 = Jsoup.connect("https://qiymeti.net/fotoaparat/" + attr).get();
                 Elements elements = document2.getElementsByClass("spec-values");
-                System.out.println(elements.get(0).text());
-//                System.out.println(elements.get(0).text());
-//
+//                System.out.println(elements.text());
+
+                for (Element e : elements) {
+                    if (!e.text().equals("")) {
+                        System.out.println(e.text());
+
+                    }
+
+
 //                Elements priceElements = document2.getElementsByClass("price-row");
 //                for (Element e : priceElements
 //                ) {
 //                    String attr1 = e.attr("data-price");
 //                    System.out.println(attr1);
-//
-//
-//                }
+
+
+                }
             }
         }
     }
