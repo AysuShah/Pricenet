@@ -39,7 +39,6 @@ public class JsoupItemPhonePriceService {
 
             for (Element product : products) {
 
-                PhoneEntity phoneEntity = new PhoneEntity();
 
                 Elements minprice = product.getElementsByClass("min-price");
                 Elements model = product.getElementsByClass("name");
@@ -52,20 +51,27 @@ public class JsoupItemPhonePriceService {
 
 
                 Document document2 = Jsoup.connect("https://qiymeti.net/telefon/" + attr).get();
-                Elements elements = document2.getElementsByClass("spec-values");
-                System.out.println(elements.get(0).text());
+                Elements value = document2.getElementsByAttributeValue("target", "_blank");
+                value = value.not(".sub-price-row");
+//                System.out.println(elements.get(0).text());
 
-                Elements priceElements = document2.getElementsByClass("price-row");
-                for (Element e : priceElements
+                String title = "";
+                String priceRow = "";
+                for (Element e : value
                 ) {
-                    String attr1 = e.attr("data-price");
-                    System.out.println(attr1);
+                    PhoneEntity phoneEntity = new PhoneEntity();
 
+                    title = e.attr("title");
+                    priceRow = e.attr("data-price");
+                    System.out.println(title + ":" + priceRow);
+
+
+                    phoneEntity.setModel(model.text());
+                    phoneEntity.setSpecifications(title);
+                    phoneEntity.setSpecifications(priceRow);
+
+                    phoneRepository.save(phoneEntity);
                 }
-
-                phoneEntity.setModel(model.text());
-
-                phoneRepository.save(phoneEntity);
             }
         }
     }

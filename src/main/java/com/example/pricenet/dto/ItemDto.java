@@ -10,7 +10,7 @@ public class ItemDto {
 
     private int id;
 
-    private int price;
+    private String price;
 
     private int minprice;
 
