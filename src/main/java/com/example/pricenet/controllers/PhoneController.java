@@ -2,13 +2,9 @@ package com.example.pricenet.controllers;
 
 
 import com.example.pricenet.Jsoup.JsoupItemPhonePriceService;
-import com.example.pricenet.dto.ItemDto;
-import com.example.pricenet.entity.PhoneEntity;
-import com.example.pricenet.service.ItemService;
+import com.example.pricenet.dto.PhoneDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -23,6 +19,13 @@ public class PhoneController {
     @PostMapping("/save")
     public void addNewData() throws IOException {
      service.savePhoneToOb();
+    }
+
+    @RequestMapping(value = "https://qiymeti.net/telefon/", method = RequestMethod.GET)
+    public PhoneDto getUsersDataById(@RequestBody PhoneDto phoneDto) {
+
+
+        return phoneDto;
     }
 }
 

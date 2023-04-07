@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ItemDto {
+public class PhoneDto {
 
     private int id;
 

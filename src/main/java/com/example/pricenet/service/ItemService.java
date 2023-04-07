@@ -1,6 +1,6 @@
 package com.example.pricenet.service;
 
-import com.example.pricenet.dto.ItemDto;
+import com.example.pricenet.dto.PhoneDto;
 import com.example.pricenet.entity.PhoneEntity;
 import com.example.pricenet.repository.PhoneRepository;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,12 @@ public class ItemService {
         this.phoneRepository = phoneRepository;
     }
 
-    public PhoneEntity addNewItemData(ItemDto itemDto) {
+    public PhoneEntity addNewItemData(PhoneDto phoneDto) {
         PhoneEntity itemEntity = PhoneEntity.builder()
-                .id(itemDto.getId())
-                .price(itemDto.getPrice())
-                .model(itemDto.getModel())
-                .specifications(itemDto.getSpecifications())
+                .id(phoneDto.getId())
+                .price(phoneDto.getPrice())
+                .model(phoneDto.getModel())
+                .specifications(phoneDto.getSpecifications())
                 .build();
 
         return phoneRepository.save(itemEntity);
