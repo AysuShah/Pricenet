@@ -3,10 +3,13 @@ package com.example.pricenet.controllers;
 
 import com.example.pricenet.Jsoup.JsoupItemPhonePriceService;
 import com.example.pricenet.dto.PhoneDto;
+import com.example.pricenet.entity.PhoneEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/phone")
@@ -18,14 +21,22 @@ public class PhoneController {
 
     @PostMapping("/save")
     public void addNewData() throws IOException {
-     service.savePhoneToOb();
+        service.savePhoneToOb();
     }
 
-    @RequestMapping(value = "https://qiymeti.net/telefon/", method = RequestMethod.GET)
+    @RequestMapping(value = "getById", method = RequestMethod.GET)
     public PhoneDto getUsersDataById(@RequestBody PhoneDto phoneDto) {
 
 
         return phoneDto;
     }
+
+    @RequestMapping(value = "getAllPhones", method = RequestMethod.GET)
+    public  List<PhoneEntity> getAllPhones() throws IOException {
+        List<PhoneEntity> phoneEntities= service.retrieveAllPhones();
+        return phoneEntities;
+    }
 }
+
+
 

@@ -1,11 +1,13 @@
 package com.example.pricenet.entity;
 
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -21,9 +23,6 @@ public class PhoneEntity {
 
     @Column(name = "price")
     private String price;
-
-    @Column(name = "minprice")
-    private int minprice;
 
     @Column(name = "model")
     private String model;
