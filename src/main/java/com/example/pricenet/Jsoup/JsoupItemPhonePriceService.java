@@ -74,7 +74,7 @@ public class JsoupItemPhonePriceService {
 
                         phoneEntity.setModel(model.text());
                         phoneEntity.setSpecifications(title);
-                        phoneEntity.setSpecifications(priceRow);
+                        phoneEntity.setPrice(priceRow);
 
 
                         phoneRepository.save(phoneEntity);
