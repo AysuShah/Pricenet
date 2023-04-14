@@ -1,13 +1,15 @@
 package com.example.pricenet.controllers;
 
 import com.example.pricenet.Jsoup.JsoupItemPhonePriceService;
+import com.example.pricenet.dto.AveragePriceDto;
+import com.example.pricenet.entity.PhoneEntity;
+import com.example.pricenet.service.AvaragePrice;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.util.List;
 
 @RestController
 @RequestMapping("/phone")
@@ -16,7 +18,14 @@ public class PriceAverageController {
 
     private final JsoupItemPhonePriceService service;
 
-    PhoneController getAverage(
-            @PathVariable @Min(1000) @Max(3000) String price )
+    private final AvaragePrice averagePrice;
 
+//    @GetMapping
+//    public List<PhoneEntity> getPrice(@RequestParam String maxprice, @RequestParam String minprice) {
+////
+////        AveragePriceDto dto = new AveragePriceDto();
+////        dto.setMinprice(minprice);
+////        dto.setMaxprice(maxprice);
+////        return averagePrice.getClass(dto);
+//    }
 }

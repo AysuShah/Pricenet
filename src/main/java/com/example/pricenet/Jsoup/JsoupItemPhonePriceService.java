@@ -19,76 +19,75 @@ import java.util.Properties;
 @Component
 @AllArgsConstructor
 public class JsoupItemPhonePriceService {
+
+    private final PhoneRepository phoneRepository;
+
     @Scheduled(fixedRate = 1000)
-    public void fixedRateSch() {
+    public void fixedRateSch() throws IOException {
 
-        private final PhoneRepository phoneRepository;
+        Document pageCount = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/").get();
 
-        public void savePhoneToOb () throws IOException {
+        Elements page = pageCount.getElementsByClass("page-numbers");
 
-            Document pageCount = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/").get();
+        int size = page.size();
 
-            Elements page = pageCount.getElementsByClass("page-numbers");
+        Element element = page.get(size - 1);
 
-            int size = page.size();
+        String pageNumber = "1";
 
-            Element element = page.get(size - 1);
+        for (int i = 1; i <= Integer.parseInt(pageNumber); i++) {
 
-            String pageNumber = "1";
+            Document document = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/page/" + i).get();
 
-            for (int i = 1; i <= Integer.parseInt(pageNumber); i++) {
-
-                Document document = Jsoup.connect("https://qiymeti.net/qiymetleri/telefon/page/" + i).get();
-
-                Elements products = document.getElementsByClass("product");
+            Elements products = document.getElementsByClass("product");
 
 
-                for (Element product : products) {
+            for (Element product : products) {
 
 
-                    Elements minprice = product.getElementsByClass("min-price");
-                    Elements model = product.getElementsByClass("name");
+                Elements minprice = product.getElementsByClass("min-price");
+                Elements model = product.getElementsByClass("name");
 //                Elements specifications = product.getElementsByClass("specifications");
 
 
-                    Elements href = product.getElementsByClass("thumbnail");
-                    href = href.get(0).getElementsByTag("a");
-                    String attr = href.attr("href");
+                Elements href = product.getElementsByClass("thumbnail");
+                href = href.get(0).getElementsByTag("a");
+                String attr = href.attr("href");
 
 
-                    Document document2 = Jsoup.connect("https://qiymeti.net/telefon/" + attr).get();
-                    Elements value = document2.getElementsByAttributeValue("target", "_blank");
-                    value = value.not(".sub-price-row");
+                Document document2 = Jsoup.connect("https://qiymeti.net/telefon/" + attr).get();
+                Elements value = document2.getElementsByAttributeValue("target", "_blank");
+                value = value.not(".sub-price-row");
 //                System.out.println(elements.get(0).text());
 
-                    String title = "";
-                    String priceRow = "";
-                    for (Element e : value
-                    ) {
-                        PhoneEntity phoneEntity = new PhoneEntity();
+                String title = "";
+                String priceRow = "";
+                for (Element e : value
+                ) {
+                    PhoneEntity phoneEntity = new PhoneEntity();
 
-                        title = e.attr("title");
-                        priceRow = e.attr("data-price");
-                        System.out.println(title + ":" + priceRow);
-
-
-                        phoneEntity.setModel(model.text());
-                        phoneEntity.setSpecifications(title);
-                        phoneEntity.setPrice(priceRow);
+                    title = e.attr("title");
+                    priceRow = e.attr("data-price");
+                    System.out.println(title + ":" + priceRow);
 
 
-                        phoneRepository.save(phoneEntity);
-                    }
+                    phoneEntity.setModel(model.text());
+                    phoneEntity.setSpecifications(title);
+                    phoneEntity.setPrice(priceRow);
+
+
+                    phoneRepository.save(phoneEntity);
                 }
             }
         }
+    }
 
-
-        public List<PhoneEntity> retrieveAllPhones () {
-            List<PhoneEntity> all = phoneRepository.findAll();
-            return all;
-        }
+    public List<PhoneEntity> retrieveAllPhones () {
+        List<PhoneEntity> all = phoneRepository.findAll();
+        return all;
     }
 }
+
+
 
 

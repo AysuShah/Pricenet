@@ -21,7 +21,7 @@ public class PhoneController {
 
     @PostMapping("/save")
     public void addNewData() throws IOException {
-        service.savePhoneToOb();
+        service.fixedRateSch();
     }
 
     @RequestMapping(value = "getById", method = RequestMethod.GET)
