@@ -5,7 +5,6 @@ import com.example.pricenet.Jsoup.JsoupItemPhonePriceService;
 import com.example.pricenet.dto.PhoneDto;
 import com.example.pricenet.entity.PhoneEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -24,12 +23,12 @@ public class PhoneController {
         service.fixedRateSch();
     }
 
-    @RequestMapping(value = "getById", method = RequestMethod.GET)
-    public PhoneDto getUsersDataById(@RequestBody PhoneDto phoneDto) {
-
-
-        return phoneDto;
-    }
+//    @RequestMapping(value = "getById", method = RequestMethod.GET)
+//    public PhoneDto getUsersDataById(@RequestBody PhoneDto phoneDto) {
+//
+//
+//        return phoneDto;
+//    }
 
     @RequestMapping(value = "getAllPhones", method = RequestMethod.GET)
     public  List<PhoneEntity> getAllPhones() throws IOException {

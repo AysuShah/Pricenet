@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 
 @Component
@@ -66,7 +65,7 @@ public class JsoupItemPhonePriceService {
                 ) {
                     PhoneEntity phoneEntity = new PhoneEntity();
 
-                    title = e.attr("title");
+                    title = e.attr("title").replaceAll("qiymeti", "");
                     priceRow = e.attr("data-price");
                     System.out.println(title + ":" + priceRow);
 
