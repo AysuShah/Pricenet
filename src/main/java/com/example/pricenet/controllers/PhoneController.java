@@ -4,6 +4,7 @@ package com.example.pricenet.controllers;
 import com.example.pricenet.Jsoup.JsoupItemPhonePriceService;
 import com.example.pricenet.dto.PhoneDto;
 import com.example.pricenet.entity.PhoneEntity;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/phone")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "Bearer Authentication")
 public class PhoneController {
 
     private final JsoupItemPhonePriceService service;

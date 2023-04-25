@@ -1,12 +1,16 @@
 package com.example.pricenet.dto;
 
-import lombok.Builder;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AveragePriceDto {
 
- String minprice;
+ private Integer minprice;
 
- String maxprice;
+ private Integer maxprice;
 }

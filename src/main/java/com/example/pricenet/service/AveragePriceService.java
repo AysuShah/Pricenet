@@ -20,9 +20,9 @@ public class AveragePriceService {
 
         List<PhoneEntity> all = repository.findAll();
         for (PhoneEntity a : all) {
-            Long averagePrice =0L;
-
-                long l = Long.parseLong(a.getPrice());
+           averagePrice =0L;
+            String s= a.getPrice().replaceAll("\\.", "");
+                long l = Long.parseLong(s);
                 averagePrice+=l;
 
             }

@@ -80,7 +80,6 @@ public class JsoupItemPhonePriceService {
             }
         }
     }
-
     public List<PhoneEntity> retrieveAllPhones () {
         List<PhoneEntity> all = phoneRepository.findAll();
         return all;
